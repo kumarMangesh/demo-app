@@ -1,0 +1,12 @@
+.sign-up{
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+}
+
+.sign-up-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+}

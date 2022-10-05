@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import LoginPage from "./Componenets/Login/LoginPage";
+import ListItems from "./Componenets/MainScreen/List";
+import ResponsiveAppBar from "./Componenets/Navbar/Navbar";
+
+import SHOP_DATA from "./Data/DummyData";
+
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const [shopData, setShopData] = useState(SHOP_DATA);
 
-export default App;
+  const handleAddFavourites = (value) => {
+    let array2 = shopData.map(a => { return { ...a } })
+
+    array2.find(a => a.id === value.id).favourite = true;
+    setShopData(array2)
+  }
+
+  const handleRemovefavourite = (value) => {
+      let array2 = shopData.map(a => { return { ...a } })
+
+      array2.find(a => a.id === value.id).favourite = false;
+      setShopData(array2)
+    }
+
+    return (
+      <>
+        <div className="App">
+          <BrowserRouter>
+            <ResponsiveAppBar />
+            <Routes>
+              <Route exact path="/login" element={<LoginPage />} />
+              <Route exact path="/" element={<ListItems SHOP_DATA={shopData} handleAddFavourites={handleAddFavourites} />} />
+              <Route exact path="/favourite" element={<ListItems SHOP_DATA={shopData} handleRemovefavourite={handleRemovefavourite} />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </>
+    );
+  }
+
+  export default App;

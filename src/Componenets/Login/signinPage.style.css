@@ -1,0 +1,19 @@
+.sign-in{
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+}
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}
+.sign-in-page-form-container {
+  display: flex;
+  flex-direction: column;
+}
+.sign-in-page-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
+}
